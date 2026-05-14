@@ -1,9 +1,9 @@
 /**
- * PetalEffect — Pétalas caindo sutilmente na tela
- * Design: Animação CSS pura, pétalas em rosa pálido e branco
+ * PetalEffect — Pétalas caindo sutilmente
+ * Paleta: Off-white, creme e dourado pálido
  */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Petal {
   id: number;
@@ -16,26 +16,26 @@ interface Petal {
 }
 
 const PETAL_COLORS = [
-  "oklch(0.92 0.04 0)",   // Rosa muito pálido
-  "oklch(0.95 0.02 30)",  // Creme rosado
-  "oklch(0.88 0.06 85)",  // Champanhe
-  "oklch(0.97 0.01 85)",  // Branco creme
+  "#F8F4EC",  // Off-white creme
+  "#F5E9C0",  // Dourado pálido
+  "#FAFAF7",  // Off-white puro
+  "#EDE4D0",  // Creme suave
 ];
 
 function generatePetals(count: number): Petal[] {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
-    size: 6 + Math.random() * 10,
-    duration: 8 + Math.random() * 12,
-    delay: Math.random() * 15,
+    size: 6 + Math.random() * 9,
+    duration: 9 + Math.random() * 12,
+    delay: Math.random() * 16,
     color: PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)],
     rotation: Math.random() * 360,
   }));
 }
 
 export default function PetalEffect() {
-  const [petals] = useState(() => generatePetals(12));
+  const [petals] = useState(() => generatePetals(10));
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -56,12 +56,11 @@ export default function PetalEffect() {
             opacity: 0,
           }}
         >
-          {/* Petal SVG shape */}
           <svg
             viewBox="0 0 20 20"
             fill={petal.color}
             style={{
-              filter: "drop-shadow(0 1px 2px oklch(0.72 0.1 80 / 0.2))",
+              filter: "drop-shadow(0 1px 2px rgba(201,168,76,0.18))",
               transform: `rotate(${petal.rotation}deg)`,
             }}
           >

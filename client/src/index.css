@@ -3,8 +3,8 @@
 
 /* ============================================================
    DESIGN SYSTEM — Romantismo Clássico Europeu
-   Paleta: Creme envelhecido, Dourado, Champanhe, Marrom quente
-   Tipografia: Cormorant Garamond + Playfair Display + Cinzel
+   Paleta: Off-White puro (#FAFAF7 / #FFFFFF) + Dourado (#C9A84C / #B8960C)
+   Tipografia: Cormorant Garamond + Playfair Display + Cinzel + EB Garamond
    ============================================================ */
 
 @custom-variant dark (&:is(.dark *));
@@ -47,51 +47,53 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Wedding custom tokens */
-  --color-gold: oklch(0.72 0.1 80);
-  --color-gold-dark: oklch(0.52 0.1 75);
-  --color-gold-light: oklch(0.88 0.06 85);
-  --color-cream: oklch(0.97 0.02 85);
-  --color-cream-dark: oklch(0.93 0.03 85);
-  --color-parchment: oklch(0.90 0.04 80);
-  --color-brown-warm: oklch(0.25 0.04 55);
-  --color-brown-mid: oklch(0.45 0.05 60);
+  /* Wedding custom tokens — Off-White & Gold */
+  --gold:        #C9A84C;
+  --gold-dark:   #9A7A20;
+  --gold-light:  #E8D08A;
+  --gold-pale:   #F5E9C0;
+  --offwhite:    #FAFAF7;
+  --offwhite-2:  #F5F5F0;
+  --offwhite-3:  #EEEDE8;
+  --text-dark:   #2C2416;
+  --text-mid:    #5A4E38;
+  --text-light:  #8A7D68;
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.97 0.02 85);
-  --foreground: oklch(0.25 0.04 55);
-  --card: oklch(0.99 0.01 85);
-  --card-foreground: oklch(0.25 0.04 55);
-  --popover: oklch(0.99 0.01 85);
-  --popover-foreground: oklch(0.25 0.04 55);
-  --primary: oklch(0.72 0.1 80);
-  --primary-foreground: oklch(0.99 0.01 85);
-  --secondary: oklch(0.93 0.03 85);
-  --secondary-foreground: oklch(0.45 0.05 60);
-  --muted: oklch(0.93 0.03 85);
-  --muted-foreground: oklch(0.55 0.04 65);
-  --accent: oklch(0.88 0.06 85);
-  --accent-foreground: oklch(0.25 0.04 55);
+  --radius: 0.2rem;
+  --background: #FAFAF7;
+  --foreground: #2C2416;
+  --card: #FFFFFF;
+  --card-foreground: #2C2416;
+  --popover: #FFFFFF;
+  --popover-foreground: #2C2416;
+  --primary: #C9A84C;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F5F0;
+  --secondary-foreground: #5A4E38;
+  --muted: #EEEDE8;
+  --muted-foreground: #8A7D68;
+  --accent: #F5E9C0;
+  --accent-foreground: #2C2416;
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.85 0.05 80);
-  --input: oklch(0.90 0.04 80);
-  --ring: oklch(0.72 0.1 80);
-  --chart-1: oklch(0.72 0.1 80);
-  --chart-2: oklch(0.52 0.1 75);
-  --chart-3: oklch(0.88 0.06 85);
-  --chart-4: oklch(0.45 0.05 60);
-  --chart-5: oklch(0.25 0.04 55);
-  --sidebar: oklch(0.93 0.03 85);
-  --sidebar-foreground: oklch(0.25 0.04 55);
-  --sidebar-primary: oklch(0.72 0.1 80);
-  --sidebar-primary-foreground: oklch(0.99 0.01 85);
-  --sidebar-accent: oklch(0.88 0.06 85);
-  --sidebar-accent-foreground: oklch(0.25 0.04 55);
-  --sidebar-border: oklch(0.85 0.05 80);
-  --sidebar-ring: oklch(0.72 0.1 80);
+  --destructive-foreground: #FFFFFF;
+  --border: #E0D9C8;
+  --input: #EEEDE8;
+  --ring: #C9A84C;
+  --chart-1: #C9A84C;
+  --chart-2: #9A7A20;
+  --chart-3: #E8D08A;
+  --chart-4: #5A4E38;
+  --chart-5: #2C2416;
+  --sidebar: #F5F5F0;
+  --sidebar-foreground: #2C2416;
+  --sidebar-primary: #C9A84C;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F5E9C0;
+  --sidebar-accent-foreground: #2C2416;
+  --sidebar-border: #E0D9C8;
+  --sidebar-ring: #C9A84C;
 }
 
 @layer base {
@@ -101,6 +103,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'EB Garamond', 'Georgia', serif;
+    background-color: #FAFAF7;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -123,51 +126,33 @@
     padding-left: 1rem;
     padding-right: 1rem;
   }
-
   .flex {
     min-height: 0;
     min-width: 0;
   }
-
   @media (min-width: 640px) {
-    .container {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
+    .container { padding-left: 1.5rem; padding-right: 1.5rem; }
   }
-
   @media (min-width: 1024px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-      max-width: 1280px;
-    }
+    .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; }
   }
 
-  /* Wedding-specific utility classes */
-  .font-display {
-    font-family: 'Cormorant Garamond', 'Georgia', serif;
-  }
-  .font-heading {
-    font-family: 'Playfair Display', 'Georgia', serif;
-  }
-  .font-label {
-    font-family: 'Cinzel', 'Georgia', serif;
-  }
-  .font-body {
-    font-family: 'EB Garamond', 'Georgia', serif;
-  }
+  /* Typography helpers */
+  .font-display { font-family: 'Cormorant Garamond', 'Georgia', serif; }
+  .font-heading  { font-family: 'Playfair Display', 'Georgia', serif; }
+  .font-label    { font-family: 'Cinzel', 'Georgia', serif; }
+  .font-body     { font-family: 'EB Garamond', 'Georgia', serif; }
 
-  .gold-text {
-    color: oklch(0.62 0.1 75);
-  }
+  /* Gold text */
+  .gold-text { color: #9A7A20; }
   .gold-gradient-text {
-    background: linear-gradient(135deg, oklch(0.72 0.1 80), oklch(0.62 0.1 75), oklch(0.82 0.08 88), oklch(0.62 0.1 75));
+    background: linear-gradient(135deg, #C9A84C 0%, #9A7A20 40%, #E8D08A 70%, #9A7A20 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Ornament divider */
   .ornament-divider {
     display: flex;
     align-items: center;
@@ -180,124 +165,99 @@
     flex: 1;
     max-width: 120px;
     height: 1px;
-    background: linear-gradient(to right, transparent, oklch(0.72 0.1 80));
+    background: linear-gradient(to right, transparent, #C9A84C);
   }
   .ornament-divider::after {
-    background: linear-gradient(to left, transparent, oklch(0.72 0.1 80));
+    background: linear-gradient(to left, transparent, #C9A84C);
   }
 
+  /* Card with gold border */
   .gold-border-card {
-    border: 1px solid oklch(0.72 0.1 80 / 0.4);
-    background: oklch(0.99 0.01 85 / 0.9);
-    box-shadow: 0 4px 30px oklch(0.72 0.1 80 / 0.1), inset 0 1px 0 oklch(0.72 0.1 80 / 0.2);
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 30px rgba(201, 168, 76, 0.08), inset 0 1px 0 rgba(201, 168, 76, 0.15);
   }
 
+  /* Primary wedding button */
   .btn-wedding-primary {
-    background: linear-gradient(135deg, oklch(0.72 0.1 80), oklch(0.62 0.1 75));
-    color: oklch(0.99 0.01 85);
-    border: 1px solid oklch(0.62 0.1 75);
+    background: linear-gradient(135deg, #C9A84C, #9A7A20);
+    color: #FFFFFF;
+    border: 1px solid #9A7A20;
     font-family: 'Cinzel', serif;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     padding: 0.875rem 2.5rem;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
+    display: inline-block;
+    text-align: center;
   }
   .btn-wedding-primary::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, oklch(0.82 0.08 88), oklch(0.72 0.1 80));
+    background: linear-gradient(135deg, #E8D08A, #C9A84C);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  .btn-wedding-primary:hover::before {
-    opacity: 1;
-  }
-  .btn-wedding-primary:active {
-    transform: scale(0.97);
-  }
+  .btn-wedding-primary:hover::before { opacity: 1; }
+  .btn-wedding-primary:active { transform: scale(0.97); }
+  .btn-wedding-primary span,
+  .btn-wedding-primary svg { position: relative; z-index: 1; }
 
+  /* Outline wedding button */
   .btn-wedding-outline {
     background: transparent;
-    color: oklch(0.62 0.1 75);
-    border: 1px solid oklch(0.72 0.1 80);
+    color: #9A7A20;
+    border: 1px solid #C9A84C;
     font-family: 'Cinzel', serif;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     padding: 0.875rem 2.5rem;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    display: inline-block;
+    text-align: center;
   }
   .btn-wedding-outline:hover {
-    background: oklch(0.72 0.1 80 / 0.1);
-    border-color: oklch(0.62 0.1 75);
+    background: rgba(201, 168, 76, 0.08);
+    border-color: #9A7A20;
   }
-  .btn-wedding-outline:active {
-    transform: scale(0.97);
-  }
+  .btn-wedding-outline:active { transform: scale(0.97); }
 
-  /* Petal animation */
+  /* Petal fall animation */
   @keyframes petal-fall {
-    0% { transform: translateY(-20px) rotate(0deg) translateX(0px); opacity: 0; }
-    10% { opacity: 0.7; }
-    90% { opacity: 0.4; }
-    100% { transform: translateY(100vh) rotate(720deg) translateX(60px); opacity: 0; }
-  }
-  @keyframes petal-sway {
-    0%, 100% { transform: translateX(0px); }
-    50% { transform: translateX(30px); }
+    0%   { transform: translateY(-20px) rotate(0deg) translateX(0px);   opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(100vh) rotate(720deg) translateX(50px); opacity: 0; }
   }
 
-  .petal {
-    position: fixed;
-    pointer-events: none;
-    z-index: 0;
-    animation: petal-fall linear infinite;
-  }
-
-  /* Fade in up animation */
+  /* Fade in up */
   @keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
   .animate-fade-in-up {
-    animation: fade-in-up 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  }
-
-  /* Shimmer animation for gold elements */
-  @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-
-  /* Envelope open animation */
-  @keyframes envelope-open {
-    0% { transform: scaleY(0) translateY(-50px); opacity: 0; }
-    100% { transform: scaleY(1) translateY(0); opacity: 1; }
-  }
-  .animate-envelope-open {
-    animation: envelope-open 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation: fade-in-up 0.85s cubic-bezier(0.23, 1, 0.32, 1) forwards;
   }
 
   /* Countdown flip */
   @keyframes count-flip {
-    0% { transform: rotateX(90deg); opacity: 0; }
-    100% { transform: rotateX(0deg); opacity: 1; }
+    0%   { transform: rotateX(90deg); opacity: 0; }
+    100% { transform: rotateX(0deg);  opacity: 1; }
   }
 
   /* Scroll reveal */
   .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(36px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* Stagger delays */
   .delay-100 { transition-delay: 100ms; }
@@ -306,31 +266,24 @@
   .delay-400 { transition-delay: 400ms; }
   .delay-500 { transition-delay: 500ms; }
 
-  /* Texture overlay */
-  .texture-overlay {
-    position: relative;
-  }
-  .texture-overlay::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23f5efe0'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23c9a84c' opacity='0.08'/%3E%3C/svg%3E");
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
-  /* Music player */
+  /* Music player glass */
   .music-player {
-    backdrop-filter: blur(12px);
-    background: oklch(0.99 0.01 85 / 0.85);
-    border: 1px solid oklch(0.72 0.1 80 / 0.3);
-    box-shadow: 0 8px 32px oklch(0.25 0.04 55 / 0.15);
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    box-shadow: 0 8px 32px rgba(44, 36, 22, 0.12);
   }
 
   /* Nav sticky */
   .nav-sticky {
     backdrop-filter: blur(16px);
-    background: oklch(0.97 0.02 85 / 0.92);
-    border-bottom: 1px solid oklch(0.72 0.1 80 / 0.2);
+    background: rgba(250, 250, 247, 0.93);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  }
+
+  /* Sound bar animation */
+  @keyframes sound-bar {
+    from { transform: scaleY(0.3); }
+    to   { transform: scaleY(1); }
   }
 }

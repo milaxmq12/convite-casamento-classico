@@ -1,16 +1,14 @@
 /**
  * DESIGN SYSTEM: Romantismo Clássico Europeu
- * Paleta: Creme envelhecido, Dourado, Champanhe, Marrom quente
+ * Paleta: Off-white puro e Dourado
  * Tipografia: Cormorant Garamond (display) + Playfair Display (heading) + Cinzel (label) + EB Garamond (body)
- * Layout: Rolagem vertical única, simulando desdobramento de convite físico
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import HeroSection from "@/components/wedding/HeroSection";
 import CountdownSection from "@/components/wedding/CountdownSection";
 import CoupleSection from "@/components/wedding/CoupleSection";
 import EventDetailsSection from "@/components/wedding/EventDetailsSection";
-import GallerySection from "@/components/wedding/GallerySection";
 import RSVPSection from "@/components/wedding/RSVPSection";
 import MusicPlayer from "@/components/wedding/MusicPlayer";
 import PetalEffect from "@/components/wedding/PetalEffect";
@@ -22,7 +20,6 @@ export default function Home() {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    // Reveal on scroll
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -33,23 +30,18 @@ export default function Home() {
       },
       { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
-
     const elements = document.querySelectorAll(".reveal");
     elements.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, [showContent]);
 
   useEffect(() => {
-    // Re-observe after content loads
     if (showContent) {
       const timer = setTimeout(() => {
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-              }
+              if (entry.isIntersecting) entry.target.classList.add("visible");
             });
           },
           { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
@@ -63,10 +55,10 @@ export default function Home() {
   }, [showContent]);
 
   return (
-    <div className="min-h-screen bg-[oklch(0.97_0.02_85)] overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAFAF7] overflow-x-hidden">
       <PetalEffect />
       <WeddingNav />
-      <MusicPlayer />
+      <MusicPlayer autoPlay={showContent} />
 
       <main>
         <HeroSection onEnter={() => setShowContent(true)} />
@@ -75,7 +67,6 @@ export default function Home() {
             <CountdownSection />
             <CoupleSection />
             <EventDetailsSection />
-            <GallerySection />
             <GiftSection />
             <RSVPSection />
             <FooterSection />
