@@ -1,3 +1,9 @@
+/**
+ * App.tsx — Convite de Casamento Isabella & Rafael
+ * Design: Romantismo Clássico Europeu
+ * Tema: Light (creme envelhecido, dourado, champanhe)
+ */
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -6,32 +12,33 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
-
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <Toaster />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                fontFamily: "'EB Garamond', serif",
+                background: "oklch(0.99 0.01 85)",
+                border: "1px solid oklch(0.72 0.1 80 / 0.4)",
+                color: "oklch(0.25 0.04 55)",
+                borderRadius: "2px",
+              },
+            }}
+          />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
