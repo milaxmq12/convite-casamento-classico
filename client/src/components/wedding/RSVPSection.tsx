@@ -1,11 +1,12 @@
 /**
- * RSVPSection — Confirmação de presença
+ * RSVPSection — Confirmação de presença com persistência via tRPC
  * Paleta: Off-white (#F5F5F0) + Dourado (#C9A84C / #9A7A20)
  */
 
 import { useState } from "react";
 import { CheckCircle, Users } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 const FLORAL_ORNAMENT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663348239620/KirE3dTZFbG3AbQWJYn9MY/wedding-floral-ornament-cnMzDwJtgYJsGoFoy7GVaj.webp";
 
@@ -31,7 +32,16 @@ export default function RSVPSection() {
     name: "", email: "", attendance: "", guests: "1", dietary: "", message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const submitMutation = trpc.rsvp.submit.useMutation({
+    onSuccess: () => setSubmitted(true),
+    onError: (err) => {
+      toast.error("Erro ao enviar confirmação. Tente novamente.", {
+        description: err.message,
+        style: toastStyle,
+      });
+    },
+  });
 
   const handleChange = (field: keyof FormData, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -42,22 +52,23 @@ export default function RSVPSection() {
       toast.error("Por favor, preencha todos os campos obrigatórios.", { style: toastStyle });
       return;
     }
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setLoading(false);
-    setSubmitted(true);
+    submitMutation.mutate({
+      name:       form.name,
+      email:      form.email,
+      attendance: form.attendance as "yes" | "no",
+      guests:     parseInt(form.guests, 10),
+      dietary:    form.dietary || undefined,
+      message:    form.message || undefined,
+    });
   };
 
   const inputClass = `
     w-full rounded-sm px-4 py-3 font-body text-sm text-[#2C2416]
     placeholder:text-[#8A7D68] placeholder:italic
     focus:outline-none transition-all duration-200
+    focus:border-[#C9A84C] focus:ring-1 focus:ring-[rgba(201,168,76,0.3)]
   `;
-  const inputStyle = {
-    background: "#FFFFFF",
-    border: "1px solid #E0D9C8",
-  };
-  const inputFocusStyle = "focus:border-[#C9A84C] focus:ring-1 focus:ring-[rgba(201,168,76,0.3)]";
+  const inputStyle = { background: "#FFFFFF", border: "1px solid #E0D9C8" };
   const labelClass = "font-label text-[0.58rem] tracking-[0.25em] uppercase text-[#9A7A20] block mb-2";
 
   return (
@@ -109,7 +120,7 @@ export default function RSVPSection() {
               <label className={labelClass}>Nome Completo *</label>
               <input
                 type="text"
-                className={`${inputClass} ${inputFocusStyle}`}
+                className={inputClass}
                 style={inputStyle}
                 placeholder="Seu nome completo"
                 value={form.name}
@@ -122,7 +133,7 @@ export default function RSVPSection() {
               <label className={labelClass}>E-mail *</label>
               <input
                 type="email"
-                className={`${inputClass} ${inputFocusStyle}`}
+                className={inputClass}
                 style={inputStyle}
                 placeholder="seu@email.com"
                 value={form.email}
@@ -167,7 +178,7 @@ export default function RSVPSection() {
                     Número de pessoas (incluindo você)
                   </label>
                   <select
-                    className={`${inputClass} ${inputFocusStyle}`}
+                    className={inputClass}
                     style={inputStyle}
                     value={form.guests}
                     onChange={(e) => handleChange("guests", e.target.value)}
@@ -184,7 +195,7 @@ export default function RSVPSection() {
                   <label className={labelClass}>Restrições Alimentares</label>
                   <input
                     type="text"
-                    className={`${inputClass} ${inputFocusStyle}`}
+                    className={inputClass}
                     style={inputStyle}
                     placeholder="Vegetariano, sem glúten, alergias... (opcional)"
                     value={form.dietary}
@@ -197,7 +208,7 @@ export default function RSVPSection() {
             <div>
               <label className={labelClass}>Mensagem para os Noivos</label>
               <textarea
-                className={`${inputClass} ${inputFocusStyle} resize-none`}
+                className={`${inputClass} resize-none`}
                 style={inputStyle}
                 rows={4}
                 placeholder="Deixe uma mensagem especial para Isabella e Rafael... (opcional)"
@@ -208,10 +219,10 @@ export default function RSVPSection() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={submitMutation.isPending}
               className="btn-wedding-primary w-full flex items-center justify-center gap-2"
             >
-              {loading ? (
+              {submitMutation.isPending ? (
                 <>
                   <span className="inline-block w-4 h-4 border-2 border-[rgba(255,255,255,0.3)] border-t-white rounded-full animate-spin" />
                   Enviando...

@@ -1,7 +1,6 @@
 /**
  * App.tsx — Convite de Casamento Isabella & Rafael
- * Design: Romantismo Clássico Europeu
- * Tema: Light (creme envelhecido, dourado, champanhe)
+ * Rotas: / (convite) + /admin (painel de convidados)
  */
 
 import { Toaster } from "@/components/ui/sonner";
@@ -11,12 +10,14 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
+      <Route path="/"      component={Home} />
+      <Route path="/admin" component={Admin} />
+      <Route path="/404"   component={NotFound} />
       <Route component={NotFound} />
     </Switch>
   );
