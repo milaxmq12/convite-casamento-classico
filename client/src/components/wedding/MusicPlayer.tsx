@@ -7,12 +7,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Music, Pause, Play, Volume2, VolumeX, ChevronUp, ChevronDown } from "lucide-react";
 
-const MUSIC_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+// Canon em Ré Maior — Kevin MacLeod (domínio público / CC BY)
+const MUSIC_URL = "/manus-storage/wedding-music_c5ed1d9a.mp3";
 
 const PLAYLIST = [
-  { title: "Canon em Ré Maior", artist: "Pachelbel" },
-  { title: "Clair de Lune", artist: "Debussy" },
-  { title: "Gymnopédie No. 1", artist: "Satie" },
+  { title: "Canon em Ré Maior", artist: "Kevin MacLeod" },
+  { title: "Piano & Violino", artist: "Clássico de Casamento" },
 ];
 
 interface MusicPlayerProps {

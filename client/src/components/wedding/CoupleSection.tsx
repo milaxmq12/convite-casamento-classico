@@ -1,6 +1,7 @@
 /**
  * CoupleSection — História do casal
  * Paleta: Off-white (#FAFAF7) + Dourado (#C9A84C / #9A7A20)
+ * Sem profissões; ornamento floral centralizado
  */
 
 const COUPLE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663348239620/KirE3dTZFbG3AbQWJYn9MY/wedding-couple-silhouette-LoqA3x7NKWfYpFqQGpP92s.webp";
@@ -10,6 +11,8 @@ export default function CoupleSection() {
   return (
     <section className="py-20 md:py-32" style={{ background: "#FAFAF7" }}>
       <div className="max-w-6xl mx-auto px-6">
+
+        {/* Section header */}
         <div className="text-center mb-16 reveal">
           <p className="font-label text-[0.58rem] tracking-[0.42em] uppercase text-[#9A7A20] mb-3">
             Nossa História
@@ -22,7 +25,9 @@ export default function CoupleSection() {
           </div>
         </div>
 
+        {/* Content grid */}
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+
           {/* Image */}
           <div className="reveal delay-100">
             <div className="relative">
@@ -67,21 +72,20 @@ export default function CoupleSection() {
 
             <div className="h-px bg-gradient-to-r from-[#C9A84C] to-transparent opacity-40" />
 
-            <div className="flex gap-8">
-              <div>
-                <p className="font-display text-3xl font-light gold-gradient-text">Isabella</p>
-                <p className="font-body text-sm text-[#8A7D68] italic mt-1">Arquiteta & Apaixonada por Arte</p>
-              </div>
-              <div className="w-px bg-[rgba(201,168,76,0.3)]" />
-              <div>
-                <p className="font-display text-3xl font-light gold-gradient-text">Rafael</p>
-                <p className="font-body text-sm text-[#8A7D68] italic mt-1">Médico & Amante da Música</p>
-              </div>
+            {/* Names only — no professions */}
+            <div className="flex gap-8 items-center">
+              <p className="font-display text-3xl font-light gold-gradient-text">Isabella</p>
+              <div className="w-px h-8 bg-[rgba(201,168,76,0.3)]" />
+              <p className="font-display text-3xl font-light gold-gradient-text">Rafael</p>
             </div>
-
-            <img src={FLORAL_ORNAMENT} alt="" className="w-48 opacity-45" />
           </div>
         </div>
+
+        {/* Floral ornament — centered below the grid */}
+        <div className="reveal delay-300 flex justify-center mt-14">
+          <img src={FLORAL_ORNAMENT} alt="" className="w-56 md:w-72 opacity-45" />
+        </div>
+
       </div>
     </section>
   );
