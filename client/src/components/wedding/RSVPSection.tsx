@@ -4,7 +4,7 @@
  */
 
 import { useState } from "react";
-import { CheckCircle, Users } from "lucide-react";
+import { CheckCircle, Users, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 import { trpc } from "@/lib/trpc";
 
@@ -32,6 +32,16 @@ export default function RSVPSection() {
     name: "", email: "", attendance: "", guests: "1", dietary: "", message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+
+  // Gera link do WhatsApp com mensagem pré-preenchida
+  const buildWhatsAppLink = () => {
+    const phone = "5511998395463";
+    const attendance = form.attendance === "yes" ? "confirmar presença" : "informar que não poderei comparecer";
+    const guests = form.attendance === "yes" ? ` Virei acompanhado(a) de ${parseInt(form.guests, 10)} pessoa(s) no total.` : "";
+    const dietary = form.dietary ? ` Restrição alimentar: ${form.dietary}.` : "";
+    const msg = `Olá! Sou ${form.name} e gostaria de ${attendance} no casamento de Isabella & Rafael no dia 14/09/2025.${guests}${dietary}`;
+    return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  };
 
   const submitMutation = trpc.rsvp.submit.useMutation({
     onSuccess: () => setSubmitted(true),
@@ -107,6 +117,27 @@ export default function RSVPSection() {
                 ? `Obrigado, ${form.name}! Sua presença foi confirmada. Mal podemos esperar para celebrar com você.`
                 : `Obrigado por nos avisar, ${form.name}. Estaremos pensando em você neste dia especial.`}
             </p>
+
+            {/* Botão WhatsApp */}
+            <div className="mt-8">
+              <p className="font-body text-sm text-[#8A7D68] italic mb-4">
+                Para finalizar, envie sua confirmação diretamente pelo WhatsApp:
+              </p>
+              <a
+                href={buildWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-sm font-label text-[0.65rem] tracking-[0.25em] uppercase text-white transition-all duration-200 hover:opacity-90 active:scale-[0.97]"
+                style={{ background: "#25D366" }}
+              >
+                <MessageCircle size={18} />
+                Enviar pelo WhatsApp
+              </a>
+              <p className="font-body text-xs text-[#B0A490] italic mt-3">
+                Uma mensagem já estará pré-preenchida com seus dados.
+              </p>
+            </div>
+
             <div className="mt-8 h-px bg-gradient-to-r from-transparent via-[rgba(201,168,76,0.4)] to-transparent" />
             <p className="font-body text-sm text-[#8A7D68] italic mt-6">Isabella & Rafael</p>
           </div>
