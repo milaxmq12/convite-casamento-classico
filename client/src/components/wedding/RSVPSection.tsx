@@ -33,13 +33,20 @@ export default function RSVPSection() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  // Gera link do WhatsApp com mensagem pré-preenchida
+  // Gera link do WhatsApp com todos os dados preenchidos
   const buildWhatsAppLink = () => {
     const phone = "5511998395463";
-    const attendance = form.attendance === "yes" ? "confirmar presença" : "informar que não poderei comparecer";
-    const guests = form.attendance === "yes" ? ` Virei acompanhado(a) de ${parseInt(form.guests, 10)} pessoa(s) no total.` : "";
-    const dietary = form.dietary ? ` Restrição alimentar: ${form.dietary}.` : "";
-    const msg = `Olá! Sou ${form.name} e gostaria de ${attendance} no casamento de Isabella & Rafael no dia 14/09/2025.${guests}${dietary}`;
+    const status = form.attendance === "yes" ? "✅ Confirmei presença" : "❌ Infelizmente não poderei comparecer";
+    const guestsLine = form.attendance === "yes" ? `\n👥 Número de pessoas: ${parseInt(form.guests, 10)}` : "";
+    const dietaryLine = form.dietary ? `\n🍽️ Restrição alimentar: ${form.dietary}` : "";
+    const messageLine = form.message ? `\n💬 Recado: ${form.message}` : "";
+    const msg =
+      `Olá! Aqui é ${form.name}.` +
+      `\n\n${status} no casamento de Isabella & Rafael — 14/09/2025.` +
+      guestsLine +
+      dietaryLine +
+      messageLine +
+      `\n\n📧 E-mail: ${form.email}`;
     return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
   };
 
