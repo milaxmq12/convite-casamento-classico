@@ -102,7 +102,7 @@ export default function RSVPSection() {
 
         {submitted ? (
           <div
-            className="reveal rounded-sm p-12 text-center"
+            className="rounded-sm p-12 text-center animate-in fade-in slide-in-from-bottom-4 duration-700"
             style={{ background: "#FFFFFF", border: "1px solid rgba(201,168,76,0.35)" }}
           >
             <div className="flex justify-center mb-6">
