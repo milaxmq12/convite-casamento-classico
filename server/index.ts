@@ -25,22 +25,15 @@ async function startServer() {
   );
 
   // Serve static files from dist/public in production
-  const staticPath =
-    process.env.NODE_ENV === "production"
-      ? path.resolve(__dirname, "public")
-      : path.resolve(__dirname, "..", "dist", "public");
+  // In production (Railway), __dirname is dist/ and static files are in dist/public/
+  const staticPath = path.resolve(__dirname, "public");
 
-  if (process.env.NODE_ENV === "production") {
-    app.use(express.static(staticPath));
-    app.get("*", (_req, res) => {
-      res.sendFile(path.join(staticPath, "index.html"));
-    });
-  }
+  app.use(express.static(staticPath));
+  app.get("*", (_req, res) => {
+    res.sendFile(path.join(staticPath, "index.html"));
+  });
 
-  // Em dev, o Vite ocupa a porta 3000; a API Express fica na 3001
-  const port = process.env.NODE_ENV === "production"
-    ? (process.env.PORT || 3000)
-    : 3001;
+  const port = process.env.PORT || 3000;
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
   });

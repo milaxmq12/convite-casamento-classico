@@ -7,7 +7,7 @@
     "dev": "concurrently \"NODE_ENV=development tsx watch server/index.ts\" \"vite --host\"",
     "dev:server": "NODE_ENV=development tsx watch server/index.ts",
     "dev:client": "vite --host",
-    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "build": "vite build --config vite.config.railway.ts && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
