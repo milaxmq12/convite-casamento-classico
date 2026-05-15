@@ -44,7 +44,12 @@ export default function RSVPSection() {
   };
 
   const submitMutation = trpc.rsvp.submit.useMutation({
-    onSuccess: () => setSubmitted(true),
+    onSuccess: () => {
+      setSubmitted(true);
+      // Abre o WhatsApp automaticamente logo após a confirmação
+      const link = buildWhatsAppLink();
+      window.open(link, "_blank", "noopener,noreferrer");
+    },
     onError: (err) => {
       toast.error("Erro ao enviar confirmação. Tente novamente.", {
         description: err.message,
